@@ -6,7 +6,7 @@ export default function ProductElement(props) {
             <img className='product-element-img' src={props.img}/>
             <div className='product-element-text'>
                 <div className='product-element-title'>{props.name}</div>
-                <div className='product-element-price'>{props.price}</div>
+                <div className='product-element-price'>${props.price}</div>
             </div>
         </Link>
     )

@@ -9,7 +9,7 @@ import Home from './Pages/Home';
 import NotFound from './Pages/NotFound';
 import Store, { loader as storeLoader } from './Pages/Store/Store';
 import Cart from './Pages/Store/Cart';
-import Product, { loader as productLoader } from './Pages/Store/Product';
+import Product, { loader as productLoader } from './Pages/Store/ProductDetail';
 import './server';
 
 const router = createBrowserRouter(createRoutesFromElements(
