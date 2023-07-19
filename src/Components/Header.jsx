@@ -1,7 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
+import { useContext } from 'react';
+import { CartContext } from './Layout';
 
 export default function Header() {
+    const { cartItems } = useContext(CartContext);
+
     const activeStyle = {
         color: '#ff7d1a'
     }
@@ -17,14 +21,14 @@ export default function Header() {
             end
             style={({ isActive }) => (isActive ? activeStyle : null)}
           >
-            Browse Products
+            Products
           </NavLink>
           <NavLink
             to="store/cart"
             style={({ isActive }) => (isActive ? activeStyle : null)}
           >
             <FaShoppingCart className="icon" />
-            <span></span>
+            <span>{cartItems.length}</span>
           </NavLink>
         </div>
       </header>
