@@ -5,6 +5,7 @@ import {
 } from 'react';
 import { 
     useLoaderData, 
+    useLocation,
     Await, 
     defer, 
     NavLink 
@@ -27,6 +28,9 @@ export default function Product() {
     const loaderDataPromise = useLoaderData();
     const { addToCart } = useContext(CartContext);
     const [inputValue, setInputValue] = useState(1);
+    const location = useLocation();
+
+    const priceState = location.state?.priceState || '';
 
     function handleInputChange(e) {
         const { value } = e.target;
@@ -56,35 +60,35 @@ export default function Product() {
       return (
         <>
           <NavLink 
-            to='..'
+            to={`..${priceState}`}
             relative='path'
-            className="return-link"
+            className='return-link'
           >
             <FaChevronLeft /> Return to all products
           </NavLink>
-          <div className="product-detail">
-            <img className="product-detail-img" src={product.imageUrl} />
-            <div className="product-detail-right">
+          <div className='product-detail'>
+            <img className='product-detail-img' src={product.imageUrl} />
+            <div className='product-detail-right'>
               <h2>{product.name}</h2>
               <p>{product.description}</p>
               <h2>${product.price}</h2>
-              <div className="product-detail-cart-container">
-                <div className="product-detail-cart-increment">
+              <div className='product-detail-cart-container'>
+                <div className='product-detail-cart-increment'>
                   <FaMinus
-                    className="increment-icon"
+                    className='increment-icon'
                     onClick={handleMinusButton}
                   />
                   <input
                     value={inputValue}
                     onChange={handleInputChange}
-                    type="number"
+                    type='number'
                   />
                   <FaPlus
-                    className="increment-icon"
+                    className='increment-icon'
                     onClick={handlePlusButton}
                   />
                 </div>
-                <button className="product-detail-cart-button" onClick={handleAddButton}>
+                <button className='product-detail-cart-button' onClick={handleAddButton}>
                   <FaShoppingCart /> Add to cart
                 </button>
               </div>
@@ -95,7 +99,7 @@ export default function Product() {
     }
 
     return (
-        <Suspense fallback={<GridLoader className='loading' color='#ff7d1a' />}>
+        <Suspense fallback={<GridLoader className='loading' color='#0074B7' />}>
             <Await resolve={loaderDataPromise.product}>
                 {renderProduct}
             </Await>

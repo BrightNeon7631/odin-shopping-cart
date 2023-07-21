@@ -1,8 +1,14 @@
 import { Suspense } from 'react';
-import { useLoaderData, defer, Await } from 'react-router-dom';
+import { 
+    useLoaderData,
+    useSearchParams, 
+    defer, 
+    Await 
+} from 'react-router-dom';
 import { getProducts } from '../../api';
 import ProductElement from '../../Components/ProductElement';
 import GridLoader from 'react-spinners/GridLoader';
+import { BiSolidDownArrow } from 'react-icons/bi';
 
 export function loader() {
     return defer({ products: getProducts()});
@@ -10,9 +16,39 @@ export function loader() {
 
 export default function Store() {
     const loaderDataPromise = useLoaderData();
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const priceFilter = searchParams.get('price');
+    console.log(priceFilter);
+
+    function handlePriceFilterChange() {
+        setSearchParams(prevParams => {
+            if (priceFilter === null || priceFilter === 'desc') {
+                prevParams.delete('price');
+                prevParams.set('price', 'asc');
+            } else if (priceFilter === 'asc') {
+                prevParams.delete('price');
+                prevParams.set('price', 'desc');
+            }
+            return prevParams;
+        })
+    }
 
     function renderProducts(products) {
-        const productElements = products.map((product) => {
+        const displayedProducts = (() => {
+            let sortedArray = [];
+            if (priceFilter === 'asc') {
+                sortedArray = [...products].sort((a, b) => a.price - b.price);
+            } else if (priceFilter === 'desc') {
+                sortedArray = [...products].sort((a, b) => b.price - a.price);
+            } else {
+                return products;
+            }
+            return sortedArray;
+        })
+
+
+        const productElements = displayedProducts().map((product) => {
             return (
                 <ProductElement 
                     key={product.id}
@@ -20,9 +56,11 @@ export default function Store() {
                     name={product.name}
                     price={product.price}
                     img={product.imageUrl}
+                    priceState={`?${searchParams.toString()}`}
                 />
             )
         })
+        
         return (
             <div className='products-container'>
                 {productElements}
@@ -32,8 +70,16 @@ export default function Store() {
 
     return (
       <>
-        <h1>Store Page!</h1>
-        <Suspense fallback={<GridLoader className='loading' color='#ff7d1a' />}>
+        <div 
+            className='sort-price' 
+            onClick={handlePriceFilterChange}
+          >
+            <div>SORT PRICE</div>
+            <BiSolidDownArrow
+              className={priceFilter === 'asc' ? 'price-asc' : 'price-desc'}
+            />
+          </div>
+        <Suspense fallback={<GridLoader className='loading' color='#0074B7' />}>
           <Await resolve={loaderDataPromise.products}>{renderProducts}</Await>
         </Suspense>
       </>
