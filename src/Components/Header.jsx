@@ -7,27 +7,28 @@ export default function Header() {
     const { cartItems } = useContext(CartContext);
 
     const activeStyle = {
-        color: '#ff7d1a'
+        color: '#0074B7'
     }
 
     return (
       <header>
-        <NavLink to="/" className="nav-home">
+        <NavLink to='/' className='nav-home'>
           Store Name
         </NavLink>
-        <div className="nav-right">
+        <div className='nav-right'>
           <NavLink
-            to="store"
+            to='store'
             end
             style={({ isActive }) => (isActive ? activeStyle : null)}
           >
             Products
           </NavLink>
           <NavLink
-            to="store/cart"
+            to='store/cart'
             style={({ isActive }) => (isActive ? activeStyle : null)}
+            className='header-cart'
           >
-            <FaShoppingCart className="icon" />
+            <FaShoppingCart className='cart-icon'/>
             <span>{cartItems.length}</span>
           </NavLink>
         </div>
