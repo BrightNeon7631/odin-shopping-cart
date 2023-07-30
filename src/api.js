@@ -3,7 +3,7 @@ export async function getProducts() {
     if (!res.ok) {
         throw {
             message: "Failed to fetch products",
-            statusText: res,
+            statusText: res.statusText,
             status: res.status
         }
     }
