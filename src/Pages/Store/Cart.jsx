@@ -10,11 +10,11 @@ export default function Cart() {
           <CartProduct
             key={product.id}
             id={product.id}
-            name={product.name}
+            name={product.title}
             price={product.price}
             quantity={product.quantity}
-            total={product.total}
-            img={product.imageUrl}
+            total={(product.total).toFixed(2)}
+            img={product.image}
             remove={removeFromCart}
           />
         );
@@ -26,7 +26,7 @@ export default function Cart() {
           <h1>Order Summary</h1>
           {cartElements}
           <div className='cart-summary'>
-            <div>Total: ${totalOrderPrice}</div>
+            <div>Total: ${(totalOrderPrice).toFixed(2)}</div>
             <button>Checkout</button>
           </div>
         </div>

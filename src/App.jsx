@@ -10,7 +10,6 @@ import NotFound from './Pages/NotFound';
 import Store, { loader as storeLoader } from './Pages/Store/Store';
 import Cart from './Pages/Store/Cart';
 import Product, { loader as productLoader } from './Pages/Store/ProductDetail';
-import './server';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<Layout />}>

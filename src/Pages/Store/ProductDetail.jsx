@@ -67,9 +67,9 @@ export default function Product() {
             <FaChevronLeft /> Return to all products
           </NavLink>
           <div className='product-detail'>
-            <img className='product-detail-img' src={product.imageUrl} />
+            <img className='product-detail-img' src={product.image} />
             <div className='product-detail-right'>
-              <h2>{product.name}</h2>
+              <h2>{product.title}</h2>
               <p>{product.description}</p>
               <h2>${product.price}</h2>
               <div className='product-detail-cart-container'>

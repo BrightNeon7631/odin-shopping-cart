@@ -1,18 +1,19 @@
 export async function getProducts() {
-    const res = await fetch('/api/store');
+    const res = await fetch('https://fakestoreapi.com/products');
     if (!res.ok) {
         throw {
             message: "Failed to fetch products",
-            statusText: res.statusText,
+            statusText: res,
             status: res.status
         }
     }
     const data = await res.json();
-    return data.products;
+    console.log(data);
+    return data;
 }
 
 export async function getProduct(id) {
-    const res = await fetch(`/api/store/${id}`);
+    const res = await fetch(`https://fakestoreapi.com/products/${id}`);
     if (!res.ok) {
         throw {
             message: "Failed to fetch product",
@@ -21,5 +22,5 @@ export async function getProduct(id) {
         }
     }
     const data = await res.json();
-    return data.products;
+    return data;
 }

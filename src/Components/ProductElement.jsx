@@ -2,8 +2,8 @@
 import { Link } from 'react-router-dom';
 export default function ProductElement(props) {
     return (
-        <Link 
-            to={props.id} 
+        <Link
+            to={`${props.id}`}
             className='product-element'
             state = {{ priceState: props.priceState }}
         >

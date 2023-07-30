@@ -17,9 +17,7 @@ export function loader() {
 export default function Store() {
     const loaderDataPromise = useLoaderData();
     const [searchParams, setSearchParams] = useSearchParams();
-
     const priceFilter = searchParams.get('price');
-    console.log(priceFilter);
 
     function handlePriceFilterChange() {
         setSearchParams(prevParams => {
@@ -53,9 +51,9 @@ export default function Store() {
                 <ProductElement 
                     key={product.id}
                     id={product.id}
-                    name={product.name}
+                    name={product.title}
                     price={product.price}
-                    img={product.imageUrl}
+                    img={product.image}
                     priceState={`?${searchParams.toString()}`}
                 />
             )
