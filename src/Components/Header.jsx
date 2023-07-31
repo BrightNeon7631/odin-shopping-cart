@@ -29,7 +29,7 @@ export default function Header() {
             className='header-cart'
           >
             <FaShoppingCart className='cart-icon'/>
-            <span>{cartItems.length}</span>
+            {cartItems.length > 0 ? <span>{cartItems.length}</span> : ''}
           </NavLink>
         </div>
       </header>
