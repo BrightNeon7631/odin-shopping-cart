@@ -3,7 +3,6 @@ import Header from './Header';
 import Footer from './Footer';
 import { 
     createContext, 
-    useEffect, 
     useState 
 } from 'react';
 
@@ -11,15 +10,6 @@ export const CartContext = createContext(null);
 
 export default function Layout() {
   const [cartItems, setCartItems] = useState([]);
-  const [totalOrderPrice, setTotalOrderPrice] = useState(0);
-
-  useEffect(() => {
-    setTotalOrderPrice(() => {
-        let total = 0;
-        cartItems.forEach(obj => total += obj.total);
-        return total;
-    })
-  }, [cartItems])
 
   function addToCart(product, quant) {
     setCartItems((prevState) => {
@@ -48,7 +38,7 @@ export default function Layout() {
 
   return (
     <div className="site-layout">
-      <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, totalOrderPrice }}>
+      <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
         <Header />
         <Outlet />
       </CartContext.Provider>

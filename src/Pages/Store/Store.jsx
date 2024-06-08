@@ -11,7 +11,7 @@ import GridLoader from 'react-spinners/GridLoader';
 import { BiSolidDownArrow } from 'react-icons/bi';
 
 export function loader() {
-    return defer({ products: getProducts()});
+    return defer({ products: getProducts() });
 }
 
 export default function Store() {
@@ -67,19 +67,19 @@ export default function Store() {
     }
 
     return (
-      <>
-        <div 
-            className='sort-price' 
-            onClick={handlePriceFilterChange}
-          >
-            <div>SORT PRICE</div>
-            <BiSolidDownArrow
-              className={priceFilter === 'asc' ? 'price-asc' : 'price-desc'}
-            />
-          </div>
-        <Suspense fallback={<GridLoader className='loading' color='#0074B7' />}>
-          <Await resolve={loaderDataPromise.products}>{renderProducts}</Await>
-        </Suspense>
-      </>
+        <>
+            <div
+                className="sort-price"
+                onClick={handlePriceFilterChange}
+            >
+                <div>SORT PRICE</div>
+                <BiSolidDownArrow
+                    className={priceFilter === 'asc' ? 'price-asc' : 'price-desc'}
+                />
+            </div>
+            <Suspense fallback={<GridLoader className="loading" color="#0074B7" />}>
+                <Await resolve={loaderDataPromise.products}>{renderProducts}</Await>
+            </Suspense>
+        </>
     );
 }

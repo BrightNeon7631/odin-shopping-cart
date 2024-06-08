@@ -3,7 +3,7 @@ import { CartContext } from '../../Components/Layout';
 import { useContext } from 'react';
 
 export default function Cart() {
-    const { cartItems, removeFromCart, totalOrderPrice } = useContext(CartContext);
+    const { cartItems, removeFromCart } = useContext(CartContext);
 
     const cartElements = cartItems.map((product) => {
         return (
@@ -19,6 +19,10 @@ export default function Cart() {
           />
         );
     })
+
+    const totalOrderPrice = cartItems.reduce((acc, item) => {
+      return acc += item.total;
+    }, 0)
     
     return (
       <>
