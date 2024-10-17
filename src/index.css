@@ -121,8 +121,11 @@ footer {
   max-width: 1000px;
 }
 
+.store-link {
+  width: 50%;
+}
+
 .home-button {
-  text-align: center;
   background-color: var(--blue-medium);
   padding: 0.5rem;
   border-radius: 5px;
@@ -131,8 +134,9 @@ footer {
   font-weight: 600;
   user-select: none;
   cursor: pointer;
-  width: 50%;
   height: 3rem;
+  border: none;
+  width: 100%;
 }
 
 .home-button:hover {
